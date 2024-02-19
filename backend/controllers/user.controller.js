@@ -4,7 +4,6 @@ export const getUsersForSidebar = async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
 
-    // Find all users except the logged in user and select all fields except the password
     const filteredUsers = await User.find({
       _id: { $ne: loggedInUserId },
     }).select("-password");

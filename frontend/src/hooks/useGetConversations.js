@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
-const useGetConvo = () => {
+const useGetConversations = () => {
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState([]);
 
@@ -10,6 +10,7 @@ const useGetConvo = () => {
       setLoading(true);
       try {
         const res = await fetch("/api/users");
+        console.log(res);
         const data = await res.json();
         if (data.error) {
           throw new Error(data.error);
@@ -27,5 +28,4 @@ const useGetConvo = () => {
 
   return { loading, conversations };
 };
-
-export default useGetConvo;
+export default useGetConversations;
