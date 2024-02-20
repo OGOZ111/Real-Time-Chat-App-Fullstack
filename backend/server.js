@@ -7,12 +7,12 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 import messageRoutes from "./routes/message.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import { app, server } from "./socket/socket.js";
 
 // Connection to MongoDB import
 import connectToMongoDB from "./db/connectToMongoDB.js";
 
 // Variables
-const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Config .env file to use environment variables
@@ -34,7 +34,7 @@ app.use("/api/users", userRoutes);
 // });
 
 // Server listen and connect to MongoDB log
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   connectToMongoDB();
   console.log(`Server is running on port ${PORT}`);
 });
